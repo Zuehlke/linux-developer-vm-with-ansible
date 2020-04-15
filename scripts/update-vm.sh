@@ -68,7 +68,7 @@ verify_vm() {
   big_step "Verifying the VM..."
   cd $REPO_ROOT
   step "run integration tests"
-  #testinfra -v --spec --color=yes spec/*.py
+  py.test -v --color=yes spec/*.py
 }
 
 big_step() {

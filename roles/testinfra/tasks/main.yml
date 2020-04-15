@@ -1,0 +1,4 @@
+---
+
+- name: Install testinfra at version 5.0.0
+  pip: state=present name=testinfra version=5.0.0

@@ -10,3 +10,4 @@
 - hosts: localhost
   roles:
     - { role: readme, tags: "readme" }
+    - { role: testinfra, tags: "testinfra" }
