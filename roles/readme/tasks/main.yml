@@ -11,7 +11,7 @@
   become_user: "{{ ansible_env.SUDO_USER }}"
 
 - name: Create the README file on the Desktop
-  template:
+  copy:
     src: README.md
     dest: ~/Desktop/README.md
   become_user: "{{ ansible_env.SUDO_USER }}"
