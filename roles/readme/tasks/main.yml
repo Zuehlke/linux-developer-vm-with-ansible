@@ -13,10 +13,12 @@
   file:
     path: ~/Desktop
     state: directory
+  become: yes
   become_user: "{{ ansible_env.SUDO_USER }}"
 
 - name: Create the README file on the Desktop
   copy:
     src: README.md
     dest: ~/Desktop/README.md
+  become: yes
   become_user: "{{ ansible_env.SUDO_USER }}"
