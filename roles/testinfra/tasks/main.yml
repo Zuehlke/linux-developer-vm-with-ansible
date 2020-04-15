@@ -2,3 +2,6 @@
 
 - name: Install testinfra at version 5.0.0
   pip: state=present name=testinfra version=5.0.0
+
+- name: Install pytest-spec formatter at version 2.0.0
+  pip: state=present name=pytest-spec version=2.0.0
