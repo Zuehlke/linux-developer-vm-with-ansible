@@ -3,13 +3,8 @@
   apt:
     name: gnome-shell-extension-desktop-icons
     state: present
-  register: gnome_shell_extension_installed
-
-- name: Restart display manager when GNOME shell extension has been installed
-  systemd:
-    name: display-manager
-    state: restarted
-  when: gnome_shell_extension_installed.changed
+  notify:
+    - restart display-manager
 
 - name: Ensure the ~/Desktop directory exists
   file:
