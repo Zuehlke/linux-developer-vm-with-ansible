@@ -67,6 +67,10 @@ update_vm() {
 verify_vm() {
   big_step "Verifying the VM..."
   cd $REPO_ROOT
+
+  step "run ansible linting"
+  ansible-lint --force-color
+
   step "run integration tests"
   py.test -v --color=yes --spec spec/*.py
 }

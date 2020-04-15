@@ -10,4 +10,5 @@
 - hosts: localhost
   roles:
     - { role: readme, tags: "readme" }
+    - { role: ansible-lint, tags: "ansible-lint" }
     - { role: testinfra, tags: "testinfra" }
