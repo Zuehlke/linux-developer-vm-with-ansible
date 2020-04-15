@@ -6,7 +6,9 @@
   register: gnome_shell_extension_installed
 
 - name: Restart display manager when GNOME shell extension has been installed
-  shell: systemctl restart display-manager
+  systemd:
+    name: display-manager
+    state: restarted
   when: gnome_shell_extension_installed.changed
 
 - name: Ensure the ~/Desktop directory exists
