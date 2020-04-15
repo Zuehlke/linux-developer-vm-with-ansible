@@ -17,6 +17,7 @@ Vagrant.configure("2") do |config|
     vmware.vmx["numvcpus"] = "4"
     vmware.vmx["memsize"] = "4096"
     vmware.vmx["usb.present"] = "TRUE"
+    vmware.vmx["usb.pcislotnumber"] = "33"
     vmware.vmx["usb_xhci.present"] = "TRUE"
   end
 
