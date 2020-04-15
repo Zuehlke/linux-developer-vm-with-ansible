@@ -25,8 +25,8 @@ Vagrant.configure("2") do |config|
     args: "user user"
 
   # run the actual update-vm provisioning script under the new login user
-  #config.vm.provision "shell", privileged: true, keep_color: true, run: "always", inline: <<-EOF
-  #  sudo -i -u user ROLE_TAGS=#{ENV['ROLE_TAGS']} /vagrant/scripts/update-vm.sh #{ENV['UPDATE_VM_FLAGS']}
-  #  EOF
+  config.vm.provision "shell", privileged: true, keep_color: true, run: "always", inline: <<-EOF
+    sudo -i -u user ROLE_TAGS=#{ENV['ROLE_TAGS']} /vagrant/scripts/update-vm.sh #{ENV['UPDATE_VM_FLAGS']}
+    EOF
 
 end

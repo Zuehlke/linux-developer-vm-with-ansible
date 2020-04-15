@@ -1,0 +1,12 @@
+---
+- name: Ensure the ~/Desktop directory exists
+  file:
+    path: ~/Desktop
+    state: directory
+  become_user: "{{ ansible_env.SUDO_USER }}"
+
+- name: Create the README file on the Desktop
+  template:
+    src: README.md
+    dest: ~/Desktop/README.md
+  become_user: "{{ ansible_env.SUDO_USER }}"
