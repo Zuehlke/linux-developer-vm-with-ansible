@@ -5,6 +5,9 @@ Vagrant.configure("2") do |config|
   config.vm.box = "tknerr/ubuntu2004-desktop"
   config.vm.box_version = "0.1.0"
 
+  # hostname
+  config.vm.hostname = 'dev-vm'
+
   # virtualbox specific customizations
   config.vm.provider "virtualbox" do |vbox, override|
     vbox.name = "My Developer VM"
