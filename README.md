@@ -11,7 +11,7 @@ It's meant to be copy/pasted and filled with life. The `roles/` directory contai
 for setting up the VM, the `spec/` directory contains the tests that come along with it.
 All your specific customizations go in there!
 
-**NOTE: This is just a bare skeleton template project.**
+**NOTE: This is just a bare skeleton template project -- use it as a copy/paste template to kickstart your own developer VM and grow it to your needs**
 
 For the Chef-based equivalent of it, see https://github.com/Zuehlke/linux-developer-vm
 
