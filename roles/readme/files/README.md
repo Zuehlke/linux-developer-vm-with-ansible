@@ -8,7 +8,7 @@ This Developer VM provides the toolchains required to develop on "your project".
 
 The latest version of the this VM can be downloaded here:
 
- * TODO: insert link
+ * https://github.com/Zuehlke/linux-developer-vm-with-ansible/releases
 
 ## Basic Usage and Setup
 
@@ -45,5 +45,6 @@ First, configure your name and email in `~/.gitconfig`:
 This developer VM is configured via Ansible and provides a simple update mechanism:
 
  * run `update-vm` to re-apply the current configuration
- * run `update-vm --update` to fetch and apply the updated configuration
+ * run `update-vm --pull` to pull latest changes and apply the updated configuration
  * run `update-vm --verify-only` to test the current configuration (does not update)
+ * run `update-vm --provision-only` - don't run the tests, only update the configuration

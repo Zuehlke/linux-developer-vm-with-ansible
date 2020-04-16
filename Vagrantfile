@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
 
   # virtualbox specific customizations
   config.vm.provider "virtualbox" do |vbox, override|
-    vbox.name = "My Developer VM"
+    vbox.name = "Linux Developer VM"
     vbox.cpus = 4
     vbox.memory = 4096
     vbox.customize ["modifyvm", :id, "--usb", "on"]
@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
 
   # vmware specific customizations
   config.vm.provider "vmware_desktop" do |vmware, override|
-    vmware.vmx["displayname"] = "My Developer VM"
+    vmware.vmx["displayname"] = "Linux Developer VM"
     vmware.vmx["numvcpus"] = "4"
     vmware.vmx["memsize"] = "4096"
     vmware.vmx["usb.present"] = "TRUE"

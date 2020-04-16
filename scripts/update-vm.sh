@@ -91,7 +91,7 @@ else
   check_git
   check_ansible
   copy_repo_and_symlink_self
-  [[ "$1" == "--update" ]] && update_repo
+  [[ "$1" == "--pull" ]] && update_repo
   update_vm
   [[ "$1" == "--provision-only" ]] || verify_vm
 fi
