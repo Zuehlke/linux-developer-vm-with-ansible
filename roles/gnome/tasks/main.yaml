@@ -1,0 +1,13 @@
+---
+- name: Install the GNOME Desktop
+  apt:
+    name:
+      - gdm3
+      - ubuntu-desktop
+      - gnome
+      - gnome-shell-extension-desktop-icons
+      - fonts-noto
+    state: present
+    install_recommends: no
+  notify:
+    - restart display-manager
