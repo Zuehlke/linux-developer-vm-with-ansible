@@ -1,0 +1,9 @@
+---
+
+- name: Install the Ubuntu Desktop (meta-)package
+  apt:
+    package: ubuntu-desktop
+    state: present
+    install_recommends: yes
+  notify:
+    - restart display-manager

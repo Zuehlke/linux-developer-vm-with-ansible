@@ -10,6 +10,7 @@
 
 - hosts: localhost
   roles:
+    - { role: desktop, tags: "desktop" }
     - { role: readme, tags: "readme" }
     - { role: ansible-lint, tags: "ansible-lint" }
     - { role: testinfra, tags: "testinfra" }
