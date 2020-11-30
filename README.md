@@ -15,12 +15,15 @@ All your specific customizations go in there!
 
 For the Chef-based equivalent of it, see https://github.com/Zuehlke/linux-developer-vm
 
-
 ## What's included?
 
 ### Main tools
 
-These are the main tools included in this developer VM (see CHANGELOG for the specific versions):
+These are the main tools included in this developer VM:
+
+ * ...(add your tools here)
+
+Apart from the above, the following tools are used to set up and maintain this developer VM:
 
  * [Ansible](https://docs.ansible.com/ansible/latest/index.html) - for managing / installing this developer VM
  * [Ansible-lint](https://github.com/ansible/ansible-lint) - to ensure best practices when adding more Ansible roles
@@ -61,21 +64,22 @@ You can run these commands from anywhere inside the developer VM:
 
 ### Further Usage Instructions
 
-For further instructions, please refer to the README.md that is placed on the Desktop of the Developer VM:
+For general instructions, please refer to the README.md that is placed on the Desktop of the Developer VM:
 
-* https://github.com/Zuehlke/linux-developer-vm-with-ansible/blob/master/roles/readme/files/README.md
+* [roles/readme/files/README.md](./roles/readme/files/README.md)
 
 
-## Development
+## Building and Packaging the VM
 
 ### Prerequisites
 
-You only need [VirtualBox](http://virtualbox.org/wiki/Downloads) and [Vagrant](http://www.vagrantup.com/)
-installed.
+You only need [VirtualBox](http://virtualbox.org/wiki/Downloads) and [Vagrant](http://www.vagrantup.com/) installed.
+
+If you want to build a VMware .ova image, you will need a [VMware Workstation (Pro) or VMware Fusion](https://www.vmware.com/products/desktop-hypervisor.html) + [Vagrant VMware Plugin](https://www.vagrantup.com/vmware).
 
 All other requirements, including Ansible will be installed *inside the Vagrant VM* during provisioning, i.e. you don't need them installed on your host machine.
 
-### Basic Development Workflow
+### Building
 
 Bring up the developer VM:
 ```
@@ -145,7 +149,15 @@ First, unmount the /vagrant shared folder:
 $ vagrant ssh -c "sudo umount /vagrant -f"
 ```
 
-Finally, shutdown the VM, remove the sharedfolder, and export the VM as an .ova file:
+Then remove the vagrant user account:
+```
+$ vagrant ssh -c "sudo pkill -KILL -u vagrant"
+$ vagrant ssh -c "sudo userdel -f -r vagrant"
+```
+
+Finally, shutdown the VM, remove the sharedfolder, and export the VM as an .ova file
+
+For VirtualBox:
 ```
 $ vagrant halt
 $ VBoxManage sharedfolder remove "Linux Developer VM" --name "vagrant"
@@ -153,11 +165,17 @@ $ VBoxManage modifyvm "Linux Developer VM" --name "Linux Developer VM v0.1.0"
 $ VBoxManage export "Linux Developer VM v0.1.0" --output "linux-developer-vm-v0.1.0.ova" --options manifest,nomacs
 ```
 
+For VMware:
+```
+$ vagrant halt
+$ VMX_FILE=`cat .vagrant/machines/default/vmware_desktop/id`
+$ ovftool --name="Linux Developer VM v0.1.0" "$VMX_FILE" linux-developer-vm-v0.1.0.ova
+```
+
 Don't forget to throw away the VM when you are done:
 ```
 $ vagrant destroy -f
 ```
-
 
 ## Contributing
 
