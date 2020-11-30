@@ -1,11 +1,4 @@
 ---
-- name: Install the GNOME Desktop Icons extension
-  apt:
-    name: gnome-shell-extension-desktop-icons
-    state: present
-  notify:
-    - restart display-manager
-
 - name: Ensure the ~/Desktop directory exists
   file:
     path: ~/Desktop

@@ -39,6 +39,7 @@ copy_repo_and_symlink_self() {
   if mountpoint -q /vagrant; then
     step "Copy /vagrant to $REPO_ROOT"
     rsync -avh --progress /vagrant/ $REPO_ROOT/ --delete --exclude-from /vagrant/.gitignore
+    chmod +x $REPO_ROOT/scripts/*.sh
     step "Symlinking 'update-vm' script"
     sudo ln -sf $REPO_ROOT/scripts/update-vm.sh /usr/local/bin/update-vm
   else
