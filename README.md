@@ -19,7 +19,7 @@ For the Chef-based equivalent of it, see https://github.com/Zuehlke/linux-develo
 
 These are the main tools included in this developer VM:
 
- * ...(add your tools here)
+ * [VSCode](https://code.visualstudio.com/) - as a general purpose (code) editor
 
 Apart from the above, the following tools are used to set up and maintain this developer VM:
 
@@ -32,6 +32,8 @@ Apart from the above, the following tools are used to set up and maintain this d
 Other tweaks and settings worth mentioning:
 
  * places a `README.md` file on the Desktop to guide first time users after they logged in to the VM
+ * sets up `~/.bashrc.d` directory to ease management of bash initialization (e.g. for setting env vars)
+ * adds a Git `PS1` shell prompt and configures some useful aliases and settings in `~/.gitconfig`
  * symlinks [`update-vm.sh`](scripts/update-vm.sh) to `/usr/local/bin/update-vm` so it's in the `$PATH` and can be used for updating the VM from the inside (see below)
 
 
