@@ -12,3 +12,25 @@
     mode: 0644
   become: yes
   become_user: "{{ ansible_env.SUDO_USER }}"
+
+- name: Supply default configuration entries in ~/.gitconfig
+  git_config:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    scope: global
+  with_dict:
+    # basic settings
+    core.autocrlf: input
+    pull.rebase: 'true'
+    # useful aliases
+    alias.co: checkout
+    alias.ci: commit
+    alias.br: branch
+    alias.st: status
+    alias.unstage: reset HEAD --
+    alias.slog: log --pretty=oneline --abbrev-commit
+    alias.graph: log --all --oneline --graph --decorate
+    alias.stash-all: stash save --include-untracked
+    alias.prune: fetch --prune
+  become: yes
+  become_user: "{{ ansible_env.SUDO_USER }}"
