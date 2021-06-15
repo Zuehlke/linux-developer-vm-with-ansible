@@ -1,0 +1,13 @@
+---
+
+- name: Make sure Git is installed
+  apt:
+    name: git
+    state: present
+
+- name: Set up the PS1 shell prompt for Git
+  copy:
+    src: git-ps1.bash
+    dest: ~/.bashrc.d/git-ps1.bash
+  become: yes
+  become_user: "{{ ansible_env.SUDO_USER }}"
