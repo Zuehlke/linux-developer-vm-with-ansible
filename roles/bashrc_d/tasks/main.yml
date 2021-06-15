@@ -1,0 +1,20 @@
+---
+- name: create ~/.bashrc.d directory
+  file:
+    path: ~/.bashrc.d
+    state: directory
+    mode: 0755
+  become: yes
+  become_user: "{{ ansible_env.SUDO_USER }}"
+
+- name: Setup ~/.bashrc to load .bash files from ~/.bashrc.d
+  blockinfile:
+    dest: ~/.bashrc
+    block: |
+      # Load *.bash files from ~/.bashrc.d
+      for config in "$HOME"/.bashrc.d/*.bash ; do
+        . "$config"
+      done
+      unset -v config
+  become: yes
+  become_user: "{{ ansible_env.SUDO_USER }}"
