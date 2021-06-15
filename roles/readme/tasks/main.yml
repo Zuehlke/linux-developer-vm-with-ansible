@@ -11,7 +11,6 @@
     path: ~/Desktop
     state: directory
     mode: 0755
-
   become: yes
   become_user: "{{ ansible_env.SUDO_USER }}"
 
