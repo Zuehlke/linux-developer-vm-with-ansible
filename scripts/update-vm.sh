@@ -72,7 +72,7 @@ verify_vm() {
   ansible-lint --force-color
 
   step "run integration tests"
-  py.test -v --color=yes --spec spec/*.py
+  py.test --color=yes --spec spec/*.py
 }
 
 big_step() {
