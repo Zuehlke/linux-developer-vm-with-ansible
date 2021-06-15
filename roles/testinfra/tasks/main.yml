@@ -1,7 +1,13 @@
 ---
 
 - name: Install testinfra at version 6.3.0
-  pip: state=present name=pytest-testinfra version=6.3.0
+  pip:
+    name: pytest-testinfra
+    version: 6.3.0
+    state: present
 
 - name: Install pytest-spec formatter at version 3.2.0
-  pip: state=present name=pytest-spec version=3.2.0
+  pip:
+    name: pytest-spec
+    version: 3.2.0
+    state: present
