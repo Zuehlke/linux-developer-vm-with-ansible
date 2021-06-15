@@ -1,4 +1,4 @@
 ---
 
-- name: Install ansible-lint at version 4.2.0
-  pip: state=present name=ansible-lint version=4.2.0
+- name: Install ansible-lint at version 5.0.12
+  pip: state=present name=ansible-lint version=5.0.12
