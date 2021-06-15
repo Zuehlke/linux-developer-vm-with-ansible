@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
     vbox.memory = 4096
     vbox.customize ["modifyvm", :id, "--usb", "on"]
     vbox.customize ["modifyvm", :id, "--accelerate3d", "off"]
+    vbox.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
     vbox.customize ["modifyvm", :id, "--vrde", "off"]
   end
 
