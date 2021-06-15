@@ -1,0 +1,33 @@
+---
+
+- name: Add VSCode apt signing key if not present
+  apt_key:
+    id: BC528686B50D79E339D3721CEB3E94ADBE1229CF
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Add Microsoft's VSCode repository into sources list
+  apt_repository:
+    repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
+    state: present
+
+- name: Install VSCode
+  apt:
+    name: code
+    state: present
+
+- name: List VSCode Extensions
+  command:
+    cmd: code --list-extensions
+  register: vscode_installed_extensions
+  changed_when: false
+  become: yes
+  become_user: "{{ ansible_env.SUDO_USER }}"
+
+- name: Install VSCode Extensions
+  command:
+    cmd: code --install-extension "{{ item }}"
+  with_items: "{{ vscode_extensions }}"
+  when: not vscode_installed_extensions is search(item)
+  become: yes
+  become_user: "{{ ansible_env.SUDO_USER }}"
