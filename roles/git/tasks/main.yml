@@ -9,5 +9,6 @@
   copy:
     src: git-ps1.bash
     dest: ~/.bashrc.d/git-ps1.bash
+    mode: 0644
   become: yes
   become_user: "{{ ansible_env.SUDO_USER }}"
