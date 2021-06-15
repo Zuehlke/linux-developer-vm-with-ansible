@@ -1,0 +1,17 @@
+---
+
+- name: Install the Ubuntu Desktop (meta-)package
+  apt:
+    package: ubuntu-desktop
+    state: present
+    install_recommends: yes
+  notify:
+    - restart display-manager
+
+- name: Install the VMware tools (so that we can copy/paste between VM and host)
+  apt:
+    package:
+      - open-vm-tools
+      - open-vm-tools-desktop
+    state: present
+  when: ansible_virtualization_type == 'VMware'
