@@ -5,7 +5,7 @@ set -e -o pipefail
 
 # variables
 REPO_ROOT=~/vm-setup
-ANSIBLE_VERSION=2.9.6
+ANSIBLE_VERSION=2.9.22
 
 # exports
 export ANSIBLE_FORCE_COLOR=true
@@ -72,7 +72,7 @@ verify_vm() {
   ansible-lint --force-color
 
   step "run integration tests"
-  py.test -v --color=yes --spec spec/*.py
+  py.test --color=yes --spec spec/*.py
 }
 
 big_step() {
