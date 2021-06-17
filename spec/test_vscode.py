@@ -1,7 +1,7 @@
 import pytest
 
 def test_vscode_apt_sources_list_exists_(host):
-    assert host.file('/etc/apt/sources.list.d/packages_microsoft_com_repos_vscode.list').exists
+    assert host.file('/etc/apt/sources.list.d/packages_microsoft_com_repos_code.list').exists
 
 def test_vscode_apt_key_defined_(host):
     assert 'Microsoft (Release signing) <gpgsecurity@microsoft.com>' in host.run('apt-key list').stdout

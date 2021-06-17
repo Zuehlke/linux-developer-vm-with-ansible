@@ -8,7 +8,7 @@
 
 - name: Add Microsoft's VSCode repository into sources list
   apt_repository:
-    repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
+    repo: deb [arch=amd64] https://packages.microsoft.com/repos/code stable main
     state: present
 
 - name: Install VSCode
