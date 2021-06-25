@@ -1,3 +1,7 @@
+import os
+
+def test_vm_user_is_in_docker_group_(host):
+    assert 'docker' in host.user(os.environ['USER']).groups
 
 def test_containerd_package_is_installed_at_version_1_4_6_(host):
     assert host.package('containerd.io').is_installed
