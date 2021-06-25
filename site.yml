@@ -15,3 +15,4 @@
     - { role: bashrc_d, tags: "bashrc_d" }
     - { role: git, tags: "git" }
     - { role: vscode, tags: "vscode" }
+    - { role: cowsay, tags: "cowsay" }
