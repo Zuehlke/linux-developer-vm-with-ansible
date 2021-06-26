@@ -13,5 +13,6 @@
     - { role: ansible-lint, tags: "ansible-lint" }
     - { role: testinfra, tags: "testinfra" }
     - { role: bashrc_d, tags: "bashrc_d" }
+    - { role: cache, tags: "cache" }
     - { role: git, tags: "git" }
     - { role: vscode, tags: "vscode" }

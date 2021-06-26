@@ -1,0 +1,18 @@
+---
+
+- name: Add systemd-tmpfiles configuration for /var/cache/downloads
+  copy:
+    content: |
+      # See tmpfiles.d(5) for details
+
+      # Create a download cache directory without automatic deletion
+      d /var/cache/downloads 1777 root root -
+    dest: /etc/tmpfiles.d/downloads.conf
+    mode: 0644
+  register: download_cache
+
+- name: Trigger systemd to create /var/cache/downloads
+  command:
+    cmd: systemd-tmpfiles --create
+    creates: /var/cache/downloads
+  when: download_cache.changed

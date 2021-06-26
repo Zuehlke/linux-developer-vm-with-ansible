@@ -35,6 +35,7 @@ Other tweaks and settings worth mentioning:
  * sets up `~/.bashrc.d` directory to ease management of bash initialization (e.g. for setting env vars)
  * adds a Git `PS1` shell prompt and configures some useful aliases and settings in `~/.gitconfig`
  * symlinks [`update-vm.sh`](scripts/update-vm.sh) to `/usr/local/bin/update-vm` so it's in the `$PATH` and can be used for updating the VM from the inside (see below)
+ * adds `/var/cache/downloads` as a cache directory for downloaded installer files
 
 
 ## Usage
