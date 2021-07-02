@@ -1,5 +1,0 @@
----
-
-- name: create-systemd-tmpfiles
-  command:
-    cmd: systemd-tmpfiles --create
