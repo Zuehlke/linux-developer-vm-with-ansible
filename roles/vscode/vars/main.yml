@@ -4,3 +4,5 @@ vscode_sha256sum: a5a50ec014b27656c198e560796f3b41180f3bdb0c19f0005193f79ed47fc8
 
 vscode_extensions:
 - zbr.vscode-ansible
+- ms-azuretools.vscode-docker
+- ms-vscode-remote.remote-containers

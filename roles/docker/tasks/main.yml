@@ -1,0 +1,21 @@
+---
+
+- name: Download Docker CE .deb Packages
+  get_url:
+    url: https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/amd64/{{ item.deb_file }}
+    checksum: "sha256:{{ item.sha256sum }}"
+    dest: "{{ download_cache_dir }}/{{ item.deb_file }}"
+    force: no
+  with_items: "{{ docker_deb_packages }}"
+
+- name: Install Docker CE .deb Packages
+  apt:
+    deb: "{{ download_cache_dir }}/{{ item.deb_file }}"
+    state: present
+  with_items: "{{ docker_deb_packages }}"
+
+- name: Add VM user to 'docker' group
+  user:
+    name: "{{ ansible_env.SUDO_USER }}"
+    groups: docker
+    append: yes

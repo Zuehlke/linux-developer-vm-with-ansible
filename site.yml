@@ -16,3 +16,4 @@
     - { role: cache, tags: "cache" }
     - { role: git, tags: "git" }
     - { role: vscode, tags: "vscode" }
+    - { role: docker, tags: "docker" }
