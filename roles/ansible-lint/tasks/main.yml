@@ -5,3 +5,4 @@
     name: ansible-lint
     version: 5.0.12
     state: present
+  become: yes
