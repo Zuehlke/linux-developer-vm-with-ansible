@@ -9,8 +9,10 @@
       d {{ download_cache_dir }} 1777 root root -
     dest: /etc/tmpfiles.d/downloads.conf
     mode: 0644
+  become: yes
 
 - name: Ensure {{ download_cache_dir }} is created
   command:
     cmd: systemd-tmpfiles --create
     creates: "{{ download_cache_dir }}"
+  become: yes

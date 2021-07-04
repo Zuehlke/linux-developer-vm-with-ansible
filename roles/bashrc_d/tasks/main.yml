@@ -4,8 +4,6 @@
     path: ~/.bashrc.d
     state: directory
     mode: 0755
-  become: yes
-  become_user: "{{ ansible_env.SUDO_USER }}"
 
 - name: Setup ~/.bashrc to load .bash files from ~/.bashrc.d
   blockinfile:
@@ -16,5 +14,3 @@
         . "$config"
       done
       unset -v config
-  become: yes
-  become_user: "{{ ansible_env.SUDO_USER }}"

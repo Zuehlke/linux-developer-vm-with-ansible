@@ -61,7 +61,7 @@ update_vm() {
   local extra_vars=$([[ -f "site.local.yml" ]] && echo "--extra-vars @site.local.yml" || echo "")
 
   step "trigger the Ansible run with $role_tags and $extra_vars"
-  /usr/local/bin/ansible-playbook -i "localhost," -b -c local site.yml -vv $role_tags $extra_vars
+  /usr/local/bin/ansible-playbook -i "localhost," -c local site.yml -vv $role_tags $extra_vars
 }
 
 verify_vm() {

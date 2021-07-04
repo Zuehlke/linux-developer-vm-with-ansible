@@ -4,3 +4,4 @@
   systemd:
     name: display-manager
     state: restarted
+  become: yes

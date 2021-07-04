@@ -4,14 +4,13 @@
   apt:
     name: git
     state: present
+  become: yes
 
 - name: Set up the PS1 shell prompt for Git
   copy:
     src: git-ps1.bash
     dest: ~/.bashrc.d/git-ps1.bash
     mode: 0644
-  become: yes
-  become_user: "{{ ansible_env.SUDO_USER }}"
 
 - name: Supply default configuration entries in ~/.gitconfig
   git_config:
@@ -32,5 +31,3 @@
     alias.graph: log --all --oneline --graph --decorate
     alias.stash-all: stash save --include-untracked
     alias.prune: fetch --prune
-  become: yes
-  become_user: "{{ ansible_env.SUDO_USER }}"
