@@ -20,6 +20,7 @@ For the Chef-based equivalent of it, see https://github.com/Zuehlke/linux-develo
 
 These are the main tools included in this developer VM:
 
+ * [Git](https://git-scm.com/) - your version control system of choice :)
  * [VSCode](https://code.visualstudio.com/) - as a general purpose (code) editor, e.g. for updating the Ansible roles when working from within the developer VM
  * [Docker](https://www.docker.com/) - as a general purpose container runtime, e.g. for building your applications with a dockerized toolchain
 
