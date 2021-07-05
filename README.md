@@ -3,7 +3,8 @@
 
 A minimal example / template project for an Ansible-managed Linux Developer VM.
 
-![Linux Developer VM Screenshot](https://user-images.githubusercontent.com/365744/122089607-3721ff80-ce07-11eb-801e-661715e95aaa.png)
+![Linux Developer VM Screenshot](https://user-images.githubusercontent.com/365744/124432724-38917880-dd72-11eb-9673-5882a52acf92.png)
+
 
 It's meant to be copy/pasted and filled with life. The `roles/` directory contains the roles
 for setting up the VM, the `spec/` directory contains the tests that come along with it.
@@ -103,10 +104,10 @@ should see all tests passing:
 ```
 ...
     default: ============================= test session starts ==============================
-    default: platform linux -- Python 3.8.5, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
+    default: platform linux -- Python 3.8.10, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
     default: rootdir: /home/user/vm-setup
     default: plugins: testinfra-6.3.0, spec-3.2.0
-    default: collected 8 items
+    default: collected 36 items
     default:
     default: spec/test_ansible.py:
     default:   ✓ Ansible is installed at version 2 9 22 [local]
@@ -118,12 +119,49 @@ should see all tests passing:
     default:   ✓ Ansible lint command is found [local]
     default:   ✓ Ansible lint version command reports version 5 0 12 [local]
     default:
+    default: spec/test_bashrc_d.py:
+    default:   ✓ Bashrc loads files from bashrc d [local]
+    default:
+    default: spec/test_cache.py:
+    default:   ✓ Download cache directory exists [local]
+    default:
+    default: spec/test_docker.py:
+    default:   ✓ Vm user is in docker group [local]
+    default:   ✓ Containerd package is installed at version 1 4 6 [local]
+    default:   ✓ Containerd version command reports 1 4 6 [local]
+    default:   ✓ Docker cli package is installed at version 20 10 7 [local]
+    default:   ✓ Docker cli version command reports 20 10 7 [local]
+    default:   ✓ Docker engine package is installed at version 20 10 7 [local]
+    default:   ✓ Docker engine version command reports 20 10 7 [local]
+    default:
+    default: spec/test_git.py:
+    default:   ✓ Git package is installed [local]
+    default:   ✓ Git command is found [local]
+    default:   ✓ Git version command reports version 2 x [local]
+    default:   ✓ Git shell prompt is configured in bashrc d [local]
+    default:   ✓ Git shell prompt is set in the environment [local]
+    default:   ✓ Gitconfig configures rebase on pull [local]
+    default:   ✓ Gitconfig configures autocrlf input [local]
+    default:   ✓ Gitconfig provides alias [local-co-checkout]
+    default:   ✓ Gitconfig provides alias [local-ci-commit]
+    default:   ✓ Gitconfig provides alias [local-br-branch]
+    default:   ✓ Gitconfig provides alias [local-st-status]
+    default:   ✓ Gitconfig provides alias [local-unstage-reset HEAD --]
+    default:   ✓ Gitconfig provides alias [local-slog-log --pretty=oneline --abbrev-commit]
+    default:   ✓ Gitconfig provides alias [local-graph-log --all --oneline --graph --decorate]
+    default:
     default: spec/test_testinfra.py:
     default:   ✓ Testinfra is installed at version 6 3 0 [local]
-    default:   ✓ Pytest spec is installed at version 3 2 0 [local]                    [100%]
+    default:   ✓ Pytest spec is installed at version 3 2 0 [local]
     default:
+    default: spec/test_vscode.py:
+    default:   ✓ Vscode command is found [local]
+    default:   ✓ Vscode version command reports version 1 57 1 [local]
+    default:   ✓ Vscode extension is installed [local-zbr
+    default:   ✓ Vscode extension is installed [local-ms-azuretools
+    default:   ✓ Vscode extension is installed [local-ms-vscode-remote
     default:
-    default: ============================== 8 passed in 28.56s ==============================
+    default: ============================== 36 passed in 5.60s ==============================
 ```
 
 If these are passing as expected, you can continue developing on the Ansible roles within this repo.
