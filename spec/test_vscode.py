@@ -7,7 +7,7 @@ def test_vscode_version_command_reports_version_1_57_1_(host):
     assert '1.57.1' in host.run('code --version').stdout
 
 @pytest.mark.parametrize('extension', [
-    'zbr.vscode-ansible',
+    'redhat.ansible',
     'ms-azuretools.vscode-docker',
     'ms-vscode-remote.remote-containers'
 ])
