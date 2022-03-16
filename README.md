@@ -83,6 +83,8 @@ If you want to build a VMware .ova image, you will need a [VMware Workstation (P
 
 All other requirements, including Ansible will be installed *inside the Vagrant VM* during provisioning, i.e. you don't need them installed on your host machine.
 
+The steps below can be executed in the same way on Mac, Linux, and Windows.
+
 ### Building
 
 Bring up the developer VM:
@@ -204,6 +206,8 @@ $ VBoxManage sharedfolder remove "Linux Developer VM" --name "vagrant"
 $ VBoxManage modifyvm "Linux Developer VM" --name "Linux Developer VM v0.1.0"
 $ VBoxManage export "Linux Developer VM v0.1.0" --output "linux-developer-vm-v0.1.0.ova" --options manifest,nomacs
 ```
+
+*Windows users*: You may have to either use the full path to `VBoxManage.exe` or add the Virtualbox path to your `Path` environment variable (recommended): Open the system settings (keyboard shortcut `WIN + X` then `y`), click on "Advanced system settings" > tab "Advanced" > button "Environment Variables" and add `C:\Program Files\Oracle\VirtualBox\` to `Path`.
 
 For VMware:
 ```
