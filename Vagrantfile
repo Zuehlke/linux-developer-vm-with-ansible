@@ -5,6 +5,12 @@ Vagrant.configure("2") do |config|
   config.vm.box = "tknerr/ubuntu2004-desktop"
   config.vm.box_version = "0.1.0"
 
+  # override the basebox when testing (an approximation) with docker
+  config.vm.provider :docker do |docker, override|
+    override.vm.box = "tknerr/baseimage-ubuntu-20.04"
+    override.vm.box_version = "1.0.0"
+  end
+
   # hostname
   config.vm.hostname = 'dev-vm'
 
