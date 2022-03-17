@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    machine:
+      image: ubuntu-2004:current
+    environment:
+      VAGRANT_DEFAULT_PROVIDER: docker
+    steps:
+      - checkout
+      - run:
+          name: Install Vagrant
+          command: |
+            wget https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.deb
+            sudo dpkg -i vagrant_2.2.19_x86_64.deb
+      - run:
+          name: Bring up Developer VM
+          command: vagrant up --no-provision
+      - run:
+          name: Provision Developer VM
+          command: UPDATE_VM_FLAGS=--provision-only vagrant provision
+      - run:
+          name: Test Developer VM
+          command: UPDATE_VM_FLAGS=--verify-only vagrant provision
