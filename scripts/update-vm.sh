@@ -38,6 +38,7 @@ copy_repo_and_symlink_self() {
   big_step "Copying repo into the VM..."
   if mountpoint -q /vagrant; then
     step "Copy /vagrant to $REPO_ROOT"
+    sudo apt-get install rsync -y
     rsync -avh --progress /vagrant/ $REPO_ROOT/ --delete --exclude-from /vagrant/.gitignore
     step "Fixing permissions..."
     chmod 0755 "$REPO_ROOT/scripts/update-vm.sh"
