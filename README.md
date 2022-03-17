@@ -1,6 +1,8 @@
 
 # Linux Developer VM Example / Template
 
+[![Circle CI](https://circleci.com/gh/Zuehlke/linux-developer-vm-with-ansible/tree/master.svg?style=shield)](https://circleci.com/gh/Zuehlke/linux-developer-vm-with-ansible/tree/master)
+
 A minimal example / template project for an Ansible-managed Linux Developer VM.
 
 ![Linux Developer VM Screenshot](https://user-images.githubusercontent.com/365744/124432724-38917880-dd72-11eb-9673-5882a52acf92.png)
