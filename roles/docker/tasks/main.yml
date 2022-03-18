@@ -21,3 +21,17 @@
     groups: docker
     append: yes
   become: yes
+
+- name: Ensure containerd service is started and enabled
+  service:
+    name: containerd
+    state: started
+    enabled: yes
+  become: yes
+
+- name: Ensure docker service is started and enabled
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  become: yes
