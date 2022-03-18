@@ -1,4 +1,5 @@
 import os
+import pytest
 
 def test_vm_user_is_in_docker_group_(host):
     assert 'docker' in host.user(os.environ['USER']).groups
@@ -23,5 +24,6 @@ def test_docker_engine_package_is_installed_at_version_20_10_7_(host):
     assert host.package('docker-ce').is_installed
     assert '20.10.7' in host.package('docker-ce').version
 
+@pytest.mark.skipif(os.path.exists('/.dockerenv'), reason = 'skip until docker-in-docker issue are fixed')
 def test_docker_engine_version_command_reports_20_10_7_(host):
     assert '20.10.7' in host.run('sudo docker version --format "{{.Server.Version}}"').stdout
