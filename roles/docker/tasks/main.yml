@@ -21,3 +21,34 @@
     groups: docker
     append: yes
   become: yes
+
+- name: Ensure containerd service is started and enabled
+  service:
+    name: containerd
+    state: started
+    enabled: yes
+  become: yes
+
+- name: Ensure the /etc/systemd/system/docker.service.d override directory exists
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+    mode: 0755
+  become: yes
+
+- name: Override docker service configuration (omit '-H fd://' in ExecStart)
+  copy:
+    content: |
+      [Service]
+      ExecStart=
+      ExecStart=/usr/bin/dockerd --containerd=/run/containerd/containerd.sock
+    dest: /etc/systemd/system/docker.service.d/override.conf
+    mode: 0644
+  become: yes
+
+- name: Ensure docker service is started and enabled
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  become: yes
