@@ -24,3 +24,12 @@ jobs:
       - run:
           name: Test Developer VM
           command: UPDATE_VM_FLAGS=--verify-only vagrant provision
+      - run:
+          name: Export Test Results
+          command: |
+            mkdir -p test-results/junit
+            vagrant ssh -c --no-tty 'cat /home/user/vm-setup/out/test/report.xml' > test-results/junit/junit-report.xml
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
