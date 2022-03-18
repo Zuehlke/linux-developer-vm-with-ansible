@@ -28,7 +28,9 @@ jobs:
           name: Export Test Results
           command: |
             mkdir -p test-results/junit
-            vagrant ssh -c --no-tty 'cat /home/user/vm-setup/out/test/report.xml' > test-results/junit/junit-report.xml
+            vagrant ssh -c 'ls -la /home/user/vm-setup/out/'
+            vagrant ssh -c 'cat /home/user/vm-setup/out/report.xml' > test-results/junit/junit-report.xml
+            vagrant ssh -c 'cat /home/user/vm-setup/out/report.html' > test-results/test-report.html
       - store_test_results:
           path: test-results
       - store_artifacts:
