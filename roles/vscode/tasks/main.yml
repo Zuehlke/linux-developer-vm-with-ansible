@@ -24,3 +24,9 @@
     cmd: code --install-extension "{{ item }}"
   with_items: "{{ vscode_extensions }}"
   when: not vscode_installed_extensions is search(item)
+
+- name: Remove vscode apt repos to avoid out-of-band updates
+  file:
+    path: /etc/apt/sources.list.d/vscode.list
+    state: absent
+  become: yes
