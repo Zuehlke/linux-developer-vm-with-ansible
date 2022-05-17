@@ -9,8 +9,12 @@ Vagrant.configure("2") do |config|
   config.vm.provider :docker do |docker, override|
     override.vm.box = "tknerr/baseimage-ubuntu-20.04"
     override.vm.box_version = "1.0.0"
-    # docker (in-docker) needs privileges for creating the docker socket
-    docker.create_args = [ "--cap-add=NET_ADMIN" ]
+    docker.create_args = [
+      # docker (in-docker) needs privileges for creating the docker socket
+      "--cap-add=NET_ADMIN",
+      # mount the X11 unix socket into the container
+      "-v", "/tmp/.X11-unix:/tmp/.X11-unix:rw"
+    ]
   end
 
   # hostname

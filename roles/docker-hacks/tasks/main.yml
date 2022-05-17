@@ -1,0 +1,26 @@
+---
+
+# note: this mimics systemd, allowing to start systemd services in container which would otherwise not work
+# source: https://github.com/gdraheim/docker-systemctl-replacement at 9cbe1a00eb4bdac6ff05b96ca34ec9ed3d8fc06c
+- name: Inject docker systemctl replacement (required for testing in container only)
+  get_url:
+    url: https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl3.py
+    dest: /usr/bin/systemctl
+    mode: 0755
+    checksum: sha256:eb0764a6eff4641c478f55a4d4ffe1725059d8cdcbd57f8752fff2c1060e977e
+  become: yes
+- name: Ensure systemd run directory exists
+  file:
+    path: /run/systemd/system/
+    state: directory
+    mode: 0755
+  become: yes
+
+# note: this allows to start GUI applications in the container but using the host's DISPLAY
+- name: Forward DISPLAY variable to the docker host
+  copy:
+    content: |
+      # forward the X11 DISPLAY to the docker host
+      export DISPLAY=host.docker.internal:0
+    dest: ~/.bashrc.d/x11-display.bash
+    mode: 0644
