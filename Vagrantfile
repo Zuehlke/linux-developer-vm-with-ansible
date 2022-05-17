@@ -11,6 +11,7 @@ Vagrant.configure("2") do |config|
     override.vm.box_version = "1.0.0"
     # docker (in-docker) needs privileges for creating the docker socket
     docker.create_args = [ "--cap-add=NET_ADMIN" ]
+    docker.create_args = [ "--env='DISPLAY=host.docker.internal:0'", "-v", "/tmp/.X11-unix:/tmp/.X11-unix:rw" ]
   end
 
   # hostname
