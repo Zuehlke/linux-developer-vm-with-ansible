@@ -2,8 +2,8 @@
 Vagrant.configure("2") do |config|
 
   # basebox
-  config.vm.box = "tknerr/ubuntu2004-desktop"
-  config.vm.box_version = "0.1.0"
+  config.vm.box = "fasmat/ubuntu2004-desktop"
+  config.vm.box_version = "22.0306.1"
 
   # override the basebox when testing (an approximation) with docker
   config.vm.provider :docker do |docker, override|
