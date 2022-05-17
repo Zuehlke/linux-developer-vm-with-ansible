@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# fail early
+set -e -o pipefail
+
 LOGIN_USER=$1
 LOGIN_PASS=$2
 
