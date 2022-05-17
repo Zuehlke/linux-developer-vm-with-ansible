@@ -89,6 +89,7 @@ step() {
 # main flow
 #
 if [[ "$1" == "--verify-only" ]]; then
+  copy_repo_and_symlink_self
   verify_vm
 else
   check_git
