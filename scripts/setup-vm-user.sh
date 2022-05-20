@@ -20,6 +20,12 @@ usermod -a -G adm,cdrom,sudo,dip,plugdev $LOGIN_USER
 # ensure the new user can do passwordless sudo
 echo "$LOGIN_USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$LOGIN_USER
 
+# rename gnome xsessions, so that by default ubuntu.desktop will be found and used
+if [[ $(which gnome-session) ]]; then
+  mv /usr/share/xsessions/gnome-xorg.desktop{,.bak}
+  mv /usr/share/xsessions/gnome.desktop{,.bak}
+fi
+
 # set the new user as the default in the login screen and end the current (vagrant) user's gnome session
 mkdir -p /etc/gdm3
 > /etc/gdm3/custom.conf
