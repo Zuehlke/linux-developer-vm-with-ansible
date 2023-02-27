@@ -2,8 +2,8 @@
 
 - name: Download Docker CE .deb Packages
   get_url:
-    url: https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/arm64/{{ item.deb_file }}
-    checksum: "sha256:{{ item.sha256sum }}"
+    url: https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/{{ docker_deb_arch }}/{{ item.deb_file }}
+    checksum: "sha256:{{ item.sha256sum[docker_deb_arch] }}"
     dest: "{{ download_cache_dir }}/{{ item.deb_file }}"
     force: no
   with_items: "{{ docker_deb_packages }}"

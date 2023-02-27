@@ -1,9 +1,16 @@
 ---
 
+docker_deb_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
 docker_deb_packages:
-- deb_file: containerd.io_1.4.6-1_arm64.deb
-  sha256sum: 00157cd5ebc6421a592835aaf5631b5e2f38066047ceec6f1db493dcadfb421b
-- deb_file: docker-ce-cli_20.10.7~3-0~ubuntu-focal_arm64.deb
-  sha256sum: f41b2f66fbdf413037ed2b7502b5c71eb6082a2c436cbcbd5a04d6a45f470476
-- deb_file: docker-ce_20.10.7~3-0~ubuntu-focal_arm64.deb
-  sha256sum: da0154e41d75149e4b66c2885d6937b2382f88dac6f5e1b08c3f0f59bea4d1d4
+- deb_file: containerd.io_1.4.6-1_{{ docker_deb_arch }}.deb
+  sha256sum:
+    amd64: c11e644e8fcb6fe92ff2be9a9b730b9baee0f467ac7db1d8597437ff232261c8
+    arm64: 00157cd5ebc6421a592835aaf5631b5e2f38066047ceec6f1db493dcadfb421b
+- deb_file: docker-ce-cli_20.10.7~3-0~ubuntu-focal_{{ docker_deb_arch }}.deb
+  sha256sum:
+    amd64: 1c3f6b4804523c77a9ef89d7ee894c2749c2acb2e8de53d3d49a02fc2c9faf51
+    arm64: f41b2f66fbdf413037ed2b7502b5c71eb6082a2c436cbcbd5a04d6a45f470476
+- deb_file: docker-ce_20.10.7~3-0~ubuntu-focal_{{ docker_deb_arch }}.deb
+  sha256sum:
+    amd64: e0a81fcee2e9b97ba8c6c061772e220ff02975a2da9a6c155b1aa9743dc9dfbc
+    arm64: da0154e41d75149e4b66c2885d6937b2382f88dac6f5e1b08c3f0f59bea4d1d4
