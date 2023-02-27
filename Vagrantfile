@@ -46,6 +46,8 @@ Vagrant.configure("2") do |config|
     prl.customize ["set", :id, "--cpus", "4"]
     prl.customize ["set", :id, "--memsize", "4096"]
     prl.customize ["set", :id, "--nested-virt", "on"]
+    # .pvmp export is only supported with full clones
+    prl.linked_clone = false
   end
 
   # create new login user

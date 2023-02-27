@@ -218,6 +218,13 @@ $ VMX_FILE=`cat .vagrant/machines/default/vmware_desktop/id`
 $ ovftool --name="Linux Developer VM v0.1.0" "$VMX_FILE" linux-developer-vm-v0.1.0.ova
 ```
 
+For Parallels (via ControlCenter UI):
+* shutdown the running VM (via right-click on VM -> Shutdown)
+* rename the VM to "linux-developer-vm-v0.1.0_arm64" (via right-click on VM -> Configure... -> Name)
+* remove any snapshots (via right-click on VM -> Mange Snapshots... -> Delete)
+* export to .pvmp file (via right-click on VM -> Prepare for Transfer)
+* locate the .pvmp file (via right-click on VM -> Show in Finder) and upload it
+
 Don't forget to throw away the VM when you are done:
 ```
 $ vagrant destroy -f
