@@ -14,9 +14,9 @@
     state: present
   become: yes
 
-- name: Install pytest-html reporter at version 3.1.1
+- name: Install pytest-html reporter at version 3.2.0
   pip:
     name: pytest-html
-    version: 3.1.1
+    version: 3.2.0
     state: present
   become: yes
