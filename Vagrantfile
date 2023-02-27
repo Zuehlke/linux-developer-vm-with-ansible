@@ -41,6 +41,13 @@ Vagrant.configure("2") do |config|
     vmware.vmx["usb_xhci.present"] = "TRUE"
   end
 
+  # parallels specific customizations
+  config.vm.provider "parallels" do |prl, override|
+    prl.customize ["set", :id, "--cpus", "4"]
+    prl.customize ["set", :id, "--memsize", "4096"]
+    prl.customize ["set", :id, "--nested-virt", "on"]
+  end
+
   # create new login user
   config.vm.provision "shell", privileged: true, path: 'scripts/setup-vm-user.sh',
     args: "user user"
