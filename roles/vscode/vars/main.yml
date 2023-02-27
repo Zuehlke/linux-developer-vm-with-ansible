@@ -1,6 +1,6 @@
 ---
 vscode_version: 1.57.1
-vscode_sha256sum: a5a50ec014b27656c198e560796f3b41180f3bdb0c19f0005193f79ed47fc8b8
+vscode_sha256sum: ce23625da8a2399f5ab4f39b65747e0a9d3b9b0258c1d81ea5ceb58a6be6d96b
 
 vscode_extensions:
 - redhat.ansible

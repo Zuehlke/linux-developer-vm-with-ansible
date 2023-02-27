@@ -2,7 +2,7 @@
 
 - name: Download VSCode version {{ vscode_version }} .deb package
   get_url:
-    url: https://update.code.visualstudio.com/{{ vscode_version }}/linux-deb-x64/stable
+    url: https://update.code.visualstudio.com/{{ vscode_version }}/linux-deb-arm64/stable
     checksum: "sha256:{{ vscode_sha256sum }}"
     dest: "{{ download_cache_dir }}/vscode-{{ vscode_version }}.deb"
     force: no
