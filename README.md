@@ -79,9 +79,11 @@ For general instructions, please refer to the README.md that is placed on the De
 
 ### Prerequisites
 
-You only need [VirtualBox](http://virtualbox.org/wiki/Downloads) and [Vagrant](http://www.vagrantup.com/) installed.
+Minimally, you need [VirtualBox](http://virtualbox.org/wiki/Downloads) and [Vagrant](http://www.vagrantup.com/) installed.
 
-If you want to build a VMware .ova image, you will need a [VMware Workstation (Pro) or VMware Fusion](https://www.vmware.com/products/desktop-hypervisor.html) + [Vagrant VMware Plugin](https://www.vagrantup.com/vmware).
+If you want to build a VMware .ova image, you will need a [VMware Workstation (Pro) or VMware Fusion](https://www.vmware.com/products/desktop-hypervisor.html) + [Vagrant VMware Provider](https://www.vagrantup.com/vmware).
+
+If you want to build a Parallels .pvmp image (**🆕: runs on M1 MacBooks!**), you will need a [Parallels Desktop Pro or Business Edition](https://www.parallels.com/products/desktop/pro/) + [Vagrant Parallels Provider](https://parallels.github.io/vagrant-parallels/docs/).
 
 All other requirements, including Ansible will be installed *inside the Vagrant VM* during provisioning, i.e. you don't need them installed on your host machine.
 
