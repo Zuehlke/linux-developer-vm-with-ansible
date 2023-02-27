@@ -1,9 +1,19 @@
 
 Vagrant.configure("2") do |config|
 
+  # see https://github.com/hashicorp/vagrant/issues/12610#issuecomment-1117967936
+  def is_arm64?
+    `uname -m`.strip == "arm64" || `/usr/bin/arch -64 sh -c "sysctl -in sysctl.proc_translated"`.strip == "0"
+  end
+
   # basebox
-  config.vm.box = "tknerr/ubuntu2004-desktop-arm"
-  config.vm.box_version = "0.1.0"
+  if is_arm64?
+    config.vm.box = "tknerr/ubuntu2004-desktop-arm"
+    config.vm.box_version = "0.1.0"
+  else
+    config.vm.box = "tknerr/ubuntu2004-desktop"
+    config.vm.box_version = "22.0520.1"
+  end
 
   # override the basebox when testing (an approximation) with docker
   config.vm.provider :docker do |docker, override|
