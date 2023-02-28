@@ -5,7 +5,7 @@
 
 A minimal example / template project for an Ansible-managed Linux Developer VM.
 
-![Linux Developer VM Screenshot](https://user-images.githubusercontent.com/365744/124432724-38917880-dd72-11eb-9673-5882a52acf92.png)
+![Linux Developer VM Screenshot](https://user-images.githubusercontent.com/365744/221720387-c926a3e5-14a4-4b23-9f0e-f2d93577a3b0.png)
 
 
 It's meant to be copy/pasted and filled with life. The `roles/` directory contains the roles
@@ -43,51 +43,21 @@ Other tweaks and settings worth mentioning:
  * adds `/var/cache/downloads` as a cache directory for downloaded installer files
 
 
-## Usage
-
-### Obtaining and Starting the VM Image
-
-The latest version of this developer VM can be downloaded as a VM image from here:
-
- * https://github.com/Zuehlke/linux-developer-vm-with-ansible/releases
-
-After downloading the .ova file you can import it into VirtualBox via `File -> Import Appliance...`.
-Once imported, you can simply start the VM and log in:
-
- * username: "user"
- * password: "user"
-
-From then on just open a terminal and you will have all of the tools available (see "What's included?").
-
-### Updating the VM
-
-You can run these commands from anywhere inside the developer VM:
-
- * `update-vm` - update the VM by applying the Ansible roles from the locally checked out repo at `~/vm-setup`
- * `update-vm --pull` - same as above, but update repo before by pulling the latest changes
- * `update-vm --verify-only` - don't update the VM, only run the TestInfra tests
- * `update-vm --provision-only` - don't run the TestInfra tests, only update the vm
-
-### Further Usage Instructions
-
-For general instructions, please refer to the README.md that is placed on the Desktop of the Developer VM:
-
-* [roles/readme/files/README.md](./roles/readme/files/README.md)
-
-
-## Building and Packaging the VM
+## Building the VM
 
 ### Prerequisites
 
-You only need [VirtualBox](http://virtualbox.org/wiki/Downloads) and [Vagrant](http://www.vagrantup.com/) installed.
+Minimally, you need [VirtualBox](http://virtualbox.org/wiki/Downloads) and [Vagrant](http://www.vagrantup.com/) installed.
 
-If you want to build a VMware .ova image, you will need a [VMware Workstation (Pro) or VMware Fusion](https://www.vmware.com/products/desktop-hypervisor.html) + [Vagrant VMware Plugin](https://www.vagrantup.com/vmware).
+➡️ if you want to build a VMware .ova image, you will need a [VMware Workstation (Pro) or VMware Fusion](https://www.vmware.com/products/desktop-hypervisor.html) + [Vagrant VMware Provider](https://www.vagrantup.com/vmware).
+
+➡️ if you want to build a Parallels .pvmp image, you will need a [Parallels Desktop (Pro Edition / Business Edition)](https://www.parallels.com/products/desktop/pro/) + [Vagrant Parallels Provider](https://parallels.github.io/vagrant-parallels/docs/) (👉 **works on M1 MacBooks!**).
 
 All other requirements, including Ansible will be installed *inside the Vagrant VM* during provisioning, i.e. you don't need them installed on your host machine.
 
 The steps below can be executed in the same way on Mac, Linux, and Windows.
 
-### Building
+### Building and Provisioning via Vagrant
 
 Bring up the developer VM:
 ```
@@ -172,7 +142,8 @@ should see all tests passing:
 If these are passing as expected, you can continue developing on the Ansible roles within this repo.
 Please don't forget to add a test for each new feature you add (see "Contributing")
 
-### Packaging
+
+## Packaging / Exporting the VM
 
 Whenever you feel like distributing a fat VM image rather than a Vagrantfile,
 you can package / export it as a VirtualBox image. This might be useful
@@ -218,10 +189,57 @@ $ VMX_FILE=`cat .vagrant/machines/default/vmware_desktop/id`
 $ ovftool --name="Linux Developer VM v0.1.0" "$VMX_FILE" linux-developer-vm-v0.1.0.ova
 ```
 
+For Parallels (via ControlCenter UI):
+* shutdown the running VM (via right-click on VM -> Shutdown)
+* rename the VM to "linux-developer-vm-v0.1.0_arm64" (via right-click on VM -> Configure... -> Name)
+* remove any snapshots (via right-click on VM -> Mange Snapshots... -> Delete)
+* export to .pvmp file (via right-click on VM -> Prepare for Transfer)
+* locate the .pvmp file (via right-click on VM -> Show in Finder) and upload it
+
 Don't forget to throw away the VM when you are done:
 ```
 $ vagrant destroy -f
 ```
+
+
+## Using the Packaged / Exported VM
+
+Consider that not everyone in your team has Vagrant + the necessary plugins installed, so you can just provide them with the exported (yet still updateable) VM image and they are ready to go.
+
+### Obtaining and Starting the VM Image
+
+The latest version of this developer VM can be downloaded as a VM image from here:
+
+ * https://github.com/Zuehlke/linux-developer-vm-with-ansible/releases
+
+After downloading the .ova file you can import it:
+
+* into VirtualBox via `File -> Import Appliance...` (and choose the exported VirtualBox .ova image)
+* into VMware Workstation / Fusion via `File -> Import...` (and choose the exported VMware .ova image)
+* into Parallels Desktop via `File -> Open...` (and choose the exported Parallels .pvmp image)
+
+Once imported, you can simply start the VM and log in:
+
+ * username: "user"
+ * password: "user"
+
+From then on just open a terminal and you will have all of the tools available (see "What's included?").
+
+### Updating the VM
+
+You can run these commands from anywhere inside the developer VM:
+
+ * `update-vm` - update the VM by applying the Ansible roles from the locally checked out repo at `~/vm-setup`
+ * `update-vm --pull` - same as above, but update repo before by pulling the latest changes
+ * `update-vm --verify-only` - don't update the VM, only run the TestInfra tests
+ * `update-vm --provision-only` - don't run the TestInfra tests, only update the vm
+
+### Further Usage Instructions
+
+For general instructions, please refer to the README.md that is placed on the Desktop of the Developer VM:
+
+* [roles/readme/files/README.md](./roles/readme/files/README.md)
+
 
 ## Contributing
 
