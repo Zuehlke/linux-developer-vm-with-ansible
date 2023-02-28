@@ -5,7 +5,7 @@
 
 A minimal example / template project for an Ansible-managed Linux Developer VM.
 
-![Linux Developer VM Screenshot](https://user-images.githubusercontent.com/365744/124432724-38917880-dd72-11eb-9673-5882a52acf92.png)
+![Linux Developer VM Screenshot](https://user-images.githubusercontent.com/365744/221720387-c926a3e5-14a4-4b23-9f0e-f2d93577a3b0.png)
 
 
 It's meant to be copy/pasted and filled with life. The `roles/` directory contains the roles
@@ -51,7 +51,7 @@ Minimally, you need [VirtualBox](http://virtualbox.org/wiki/Downloads) and [Vagr
 
 ➡️ if you want to build a VMware .ova image, you will need a [VMware Workstation (Pro) or VMware Fusion](https://www.vmware.com/products/desktop-hypervisor.html) + [Vagrant VMware Provider](https://www.vagrantup.com/vmware).
 
-➡️ if you want to build a Parallels .pvmp image (**runs on M1 MacBooks!**), you will need a [Parallels Desktop Pro or Business Edition](https://www.parallels.com/products/desktop/pro/) + [Vagrant Parallels Provider](https://parallels.github.io/vagrant-parallels/docs/).
+➡️ if you want to build a Parallels .pvmp image, you will need a [Parallels Desktop (Pro Edition / Business Edition)](https://www.parallels.com/products/desktop/pro/) + [Vagrant Parallels Provider](https://parallels.github.io/vagrant-parallels/docs/) (👉 **works on M1 MacBooks!**).
 
 All other requirements, including Ansible will be installed *inside the Vagrant VM* during provisioning, i.e. you don't need them installed on your host machine.
 
