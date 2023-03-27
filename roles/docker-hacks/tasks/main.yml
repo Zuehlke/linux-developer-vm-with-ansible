@@ -4,7 +4,7 @@
 # source: https://github.com/gdraheim/docker-systemctl-replacement at 9cbe1a00eb4bdac6ff05b96ca34ec9ed3d8fc06c
 - name: Inject docker systemctl replacement (required for testing in container only)
   get_url:
-    url: https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl3.py
+    url: https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/036f3e49f85689b1fe1ec2e776d4814110645864/files/docker/systemctl3.py
     dest: /usr/bin/systemctl
     mode: 0755
     checksum: sha256:eb0764a6eff4641c478f55a4d4ffe1725059d8cdcbd57f8752fff2c1060e977e
