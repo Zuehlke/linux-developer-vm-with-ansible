@@ -8,16 +8,18 @@ Vagrant.configure("2") do |config|
 
   # basebox
   if is_arm64?
+    # TODO: create and update to 22.04 basebox
     config.vm.box = "tknerr/ubuntu2004-desktop-arm"
     config.vm.box_version = "0.1.0"
   else
+    # TODO: create and update to 22.04 basebox
     config.vm.box = "tknerr/ubuntu2004-desktop"
     config.vm.box_version = "22.0520.1"
   end
 
   # override the basebox when testing (an approximation) with docker
   config.vm.provider :docker do |docker, override|
-    override.vm.box = "tknerr/baseimage-ubuntu-20.04"
+    override.vm.box = "tknerr/baseimage-ubuntu-22.04"
     override.vm.box_version = "1.0.0"
     docker.create_args = [
       # docker (in-docker) needs privileges for creating the docker socket
