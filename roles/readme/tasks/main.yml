@@ -1,7 +1,7 @@
 ---
 - name: Install the GNOME Desktop Icons extension
   apt:
-    name: gnome-shell-extension-desktop-icons
+    name: gnome-shell-extension-desktop-icons-ng
     state: present
   notify:
     - restart display-manager
