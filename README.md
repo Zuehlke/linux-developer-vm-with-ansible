@@ -3,7 +3,7 @@
 
 [![Circle CI](https://circleci.com/gh/Zuehlke/linux-developer-vm-with-ansible/tree/master.svg?style=shield)](https://circleci.com/gh/Zuehlke/linux-developer-vm-with-ansible/tree/master)
 
-A minimal example / template project for an Ansible-managed Linux Developer VM.
+A minimal example / template project for an Ansible-managed Linux Developer VM based on Ubuntu 22.04.
 
 ![Linux Developer VM Screenshot](https://user-images.githubusercontent.com/365744/221720387-c926a3e5-14a4-4b23-9f0e-f2d93577a3b0.png)
 
@@ -20,7 +20,7 @@ For the Chef-based equivalent of it, see https://github.com/Zuehlke/linux-develo
 
 ### Main tools
 
-These are the main tools included in this developer VM:
+These are the main tools included in this [Ubuntu 22.04 Desktop](https://ubuntu.com/download/desktop) based Developer VM:
 
  * [Git](https://git-scm.com/) - your version control system of choice :)
  * [VSCode](https://code.visualstudio.com/) - as a general purpose (code) editor, e.g. for updating the Ansible roles when working from within the developer VM
