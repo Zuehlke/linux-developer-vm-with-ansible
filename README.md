@@ -47,7 +47,7 @@ Other tweaks and settings worth mentioning:
 
 ### Prerequisites
 
-Minimally, you need [VirtualBox](http://virtualbox.org/wiki/Downloads) and [Vagrant](http://www.vagrantup.com/) installed.
+Minimally, you need [VirtualBox](http://virtualbox.org/wiki/Downloads) and [Vagrant](http://www.vagrantup.com/) (>= 2.4.0) installed.
 
 ➡️ if you want to build a VMware .ova image, you will need a [VMware Workstation (Pro) or VMware Fusion](https://www.vmware.com/products/desktop-hypervisor.html) + [Vagrant VMware Provider](https://www.vagrantup.com/vmware).
 
