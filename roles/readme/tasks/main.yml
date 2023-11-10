@@ -1,20 +1,20 @@
 ---
 - name: Install the GNOME Desktop Icons extension
-  apt:
+  ansible.builtin.apt:
     name: gnome-shell-extension-desktop-icons-ng
     state: present
   notify:
-    - restart display-manager
-  become: yes
+    - Restart display-manager
+  become: true
 
 - name: Ensure the ~/Desktop directory exists
-  file:
+  ansible.builtin.file:
     path: ~/Desktop
     state: directory
-    mode: 0755
+    mode: "0755"
 
 - name: Create the README file on the Desktop
-  copy:
+  ansible.builtin.copy:
     src: README.md
     dest: ~/Desktop/README.md
-    mode: 0644
+    mode: "0644"

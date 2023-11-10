@@ -1,8 +1,10 @@
+---
 version: 2
 jobs:
   build:
     machine:
       image: ubuntu-2004:current
+    resource_class: arm.medium
     environment:
       VAGRANT_DEFAULT_PROVIDER: docker
     steps:

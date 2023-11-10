@@ -1,18 +1,17 @@
 ---
-
-- name: Add systemd-tmpfiles configuration for {{ download_cache_dir }}
-  copy:
+- name: Add systemd-tmpfiles configuration for {{ cache_dir_downloads }}
+  ansible.builtin.copy:
     content: |
       # See tmpfiles.d(5) for details
 
       # Create a download cache directory without automatic deletion
-      d {{ download_cache_dir }} 1777 root root -
+      d {{ cache_dir_downloads }} 1777 root root -
     dest: /etc/tmpfiles.d/downloads.conf
-    mode: 0644
-  become: yes
+    mode: "0644"
+  become: true
 
-- name: Ensure {{ download_cache_dir }} is created
-  command:
+- name: Ensure {{ cache_dir_downloads }} is created
+  ansible.builtin.command:
     cmd: systemd-tmpfiles --create
-    creates: "{{ download_cache_dir }}"
-  become: yes
+    creates: "{{ cache_dir_downloads }}"
+  become: true

@@ -1,54 +1,54 @@
 ---
-
 - name: Download Docker CE .deb Packages
-  get_url:
-    url: https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/{{ docker_deb_arch }}/{{ item.deb_file }}
-    checksum: "sha256:{{ item.sha256sum[docker_deb_arch] }}"
-    dest: "{{ download_cache_dir }}/{{ item.deb_file }}"
-    force: no
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/{{ docker_deb_arch }}/{{ item.deb_file }}
+    checksum: sha256:{{ item.sha256sum[docker_deb_arch] }}
+    dest: "{{ cache_dir_downloads }}/{{ item.deb_file }}"
+    mode: "0644"
+    force: false
   with_items: "{{ docker_deb_packages }}"
 
 - name: Install Docker CE .deb Packages
-  apt:
-    deb: "{{ download_cache_dir }}/{{ item.deb_file }}"
+  ansible.builtin.apt:
+    deb: "{{ cache_dir_downloads }}/{{ item.deb_file }}"
     state: present
   with_items: "{{ docker_deb_packages }}"
-  become: yes
+  become: true
 
 - name: Add VM user to 'docker' group
-  user:
+  ansible.builtin.user:
     name: "{{ ansible_env.USER }}"
     groups: docker
-    append: yes
-  become: yes
+    append: true
+  become: true
 
 - name: Ensure containerd service is started and enabled
-  service:
+  ansible.builtin.service:
     name: containerd
     state: started
-    enabled: yes
-  become: yes
+    enabled: true
+  become: true
 
 - name: Ensure the /etc/systemd/system/docker.service.d override directory exists
-  file:
+  ansible.builtin.file:
     path: /etc/systemd/system/docker.service.d
     state: directory
-    mode: 0755
-  become: yes
+    mode: "0755"
+  become: true
 
 - name: Override docker service configuration (omit '-H fd://' in ExecStart)
-  copy:
+  ansible.builtin.copy:
     content: |
       [Service]
       ExecStart=
       ExecStart=/usr/bin/dockerd --containerd=/run/containerd/containerd.sock
     dest: /etc/systemd/system/docker.service.d/override.conf
-    mode: 0644
-  become: yes
+    mode: "0644"
+  become: true
 
 - name: Ensure docker service is started and enabled
-  service:
+  ansible.builtin.service:
     name: docker
     state: started
-    enabled: yes
-  become: yes
+    enabled: true
+  become: true

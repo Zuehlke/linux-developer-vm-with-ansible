@@ -3,8 +3,8 @@ import pytest
 def test_vscode_command_is_found_(host):
     assert host.run('which code').rc is 0
 
-def test_vscode_version_command_reports_version_1_57_1_(host):
-    assert '1.57.1' in host.run('code --version').stdout
+def test_vscode_version_command_reports_version_1_84_1_(host):
+    assert '1.84.1' in host.run('code --version').stdout
 
 @pytest.mark.parametrize('extension', [
     'redhat.ansible',
