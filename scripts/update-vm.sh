@@ -10,6 +10,17 @@ ANSIBLE_VERSION=5.5.0
 # exports
 export ANSIBLE_FORCE_COLOR=true
 
+check_prerequisites() {
+  big_step "Checking prerequisites..."
+  if [[ $(cat /etc/lsb-release | grep 'DISTRIB_RELEASE=22.04') ]]; then
+    echo "On Ubuntu 22.04, OK to run update"
+  else
+    echo "Unsupported operating system, this script may run on Ubuntu 22.04 only!"
+    cat /etc/lsb-release
+    exit 1
+  fi
+}
+
 check_ansible() {
   big_step "Checking Ansible..."
   if [[ $(ansible --version | grep "$ANSIBLE_VERSION") ]]; then
@@ -92,6 +103,7 @@ if [[ "$1" == "--verify-only" ]]; then
   copy_repo_and_symlink_self
   verify_vm
 else
+  check_prerequisites
   check_git
   check_ansible
   copy_repo_and_symlink_self

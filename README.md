@@ -3,10 +3,9 @@
 
 [![Circle CI](https://circleci.com/gh/Zuehlke/linux-developer-vm-with-ansible/tree/master.svg?style=shield)](https://circleci.com/gh/Zuehlke/linux-developer-vm-with-ansible/tree/master)
 
-A minimal example / template project for an Ansible-managed Linux Developer VM.
+A minimal example / template project for an Ansible-managed Linux Developer VM based on Ubuntu 22.04.
 
-![Linux Developer VM Screenshot](https://user-images.githubusercontent.com/365744/221720387-c926a3e5-14a4-4b23-9f0e-f2d93577a3b0.png)
-
+![Linux Developer VM Screenshot](https://github.com/Zuehlke/linux-developer-vm-with-ansible/assets/365744/66854dc6-b7b9-4c8f-a9c4-48457eeaac84)
 
 It's meant to be copy/pasted and filled with life. The `roles/` directory contains the roles
 for setting up the VM, the `spec/` directory contains the tests that come along with it.
@@ -20,7 +19,7 @@ For the Chef-based equivalent of it, see https://github.com/Zuehlke/linux-develo
 
 ### Main tools
 
-These are the main tools included in this developer VM:
+These are the main tools included in this [Ubuntu 22.04 Desktop](https://ubuntu.com/download/desktop) based Developer VM:
 
  * [Git](https://git-scm.com/) - your version control system of choice :)
  * [VSCode](https://code.visualstudio.com/) - as a general purpose (code) editor, e.g. for updating the Ansible roles when working from within the developer VM
@@ -47,11 +46,11 @@ Other tweaks and settings worth mentioning:
 
 ### Prerequisites
 
-Minimally, you need [VirtualBox](http://virtualbox.org/wiki/Downloads) and [Vagrant](http://www.vagrantup.com/) installed.
+Minimally, you need [VirtualBox](http://virtualbox.org/wiki/Downloads) and [Vagrant](http://www.vagrantup.com/) (>= 2.4.0) installed.
 
-➡️ if you want to build a VMware .ova image, you will need a [VMware Workstation (Pro) or VMware Fusion](https://www.vmware.com/products/desktop-hypervisor.html) + [Vagrant VMware Provider](https://www.vagrantup.com/vmware).
+➡️ if you want to build a VMware .ova image, you will need a [VMware Workstation (Pro) or VMware Fusion](https://www.vmware.com/products/desktop-hypervisor.html) + [Vagrant VMware Provider](https://www.vagrantup.com/vmware) (👉 **works on M1/M2 MacBooks!**).
 
-➡️ if you want to build a Parallels .pvmp image, you will need a [Parallels Desktop (Pro Edition / Business Edition)](https://www.parallels.com/products/desktop/pro/) + [Vagrant Parallels Provider](https://parallels.github.io/vagrant-parallels/docs/) (👉 **works on M1 MacBooks!**).
+➡️ if you want to build a Parallels .pvmp image, you will need a [Parallels Desktop (Pro Edition / Business Edition)](https://www.parallels.com/products/desktop/pro/) + [Vagrant Parallels Provider](https://parallels.github.io/vagrant-parallels/docs/) (👉 **works on M1/M2 MacBooks!**).
 
 All other requirements, including Ansible will be installed *inside the Vagrant VM* during provisioning, i.e. you don't need them installed on your host machine.
 

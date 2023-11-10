@@ -1,23 +1,13 @@
 
 Vagrant.configure("2") do |config|
 
-  # see https://github.com/hashicorp/vagrant/issues/12610#issuecomment-1117967936
-  def is_arm64?
-    `uname -m`.strip == "arm64" || `/usr/bin/arch -64 sh -c "sysctl -in sysctl.proc_translated"`.strip == "0"
-  end
-
-  # basebox
-  if is_arm64?
-    config.vm.box = "tknerr/ubuntu2004-desktop-arm"
-    config.vm.box_version = "0.1.0"
-  else
-    config.vm.box = "tknerr/ubuntu2004-desktop"
-    config.vm.box_version = "22.0520.1"
-  end
+  config.vm.box = "tknerr/ubuntu2204-desktop"
+  config.vm.box_version = "23.1027.1"
+  config.vm.box_architecture = :auto
 
   # override the basebox when testing (an approximation) with docker
   config.vm.provider :docker do |docker, override|
-    override.vm.box = "tknerr/baseimage-ubuntu-20.04"
+    override.vm.box = "tknerr/baseimage-ubuntu-22.04"
     override.vm.box_version = "1.0.0"
     docker.create_args = [
       # docker (in-docker) needs privileges for creating the docker socket
