@@ -1,9 +1,8 @@
 ---
-
-- name: Install testinfra at version 6.3.0
+- name: Install testinfra at version 9.0.0
   pip:
     name: pytest-testinfra
-    version: 6.3.0
+    version: 9.0.0
     state: present
   become: yes
 
@@ -14,9 +13,9 @@
     state: present
   become: yes
 
-- name: Install pytest-html reporter at version 3.2.0
+- name: Install pytest-html reporter at version 4.1.1
   pip:
     name: pytest-html
-    version: 3.2.0
+    version: 4.1.1
     state: present
   become: yes
