@@ -1,9 +1,8 @@
 ---
-
-- name: Install testinfra at version 6.3.0
+- name: Install testinfra at version 9.0.0
   pip:
     name: pytest-testinfra
-    version: 6.3.0
+    version: 9.0.0
     state: present
   become: yes
 
