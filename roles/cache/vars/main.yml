@@ -1,2 +1,2 @@
 ---
-download_cache_dir: /var/cache/downloads
+cache_dir_downloads: /var/cache/downloads

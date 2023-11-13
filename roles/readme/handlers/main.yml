@@ -1,7 +1,6 @@
 ---
-
-- name: restart display-manager
-  systemd:
+- name: Restart display-manager
+  ansible.builtin.systemd:
     name: display-manager
     state: restarted
-  become: yes
+  become: true

@@ -1,14 +1,14 @@
 ---
-- name: create ~/.bashrc.d directory
-  file:
+- name: Create ~/.bashrc.d directory
+  ansible.builtin.file:
     path: ~/.bashrc.d
     state: directory
-    mode: 0755
+    mode: "0755"
 
 - name: Setup ~/.bashrc to load .bash files from ~/.bashrc.d
-  blockinfile:
+  ansible.builtin.blockinfile:
     dest: ~/.bashrc
-    block: |
+    block: |-
       # Load *.bash files from ~/.bashrc.d
       for config in "$HOME"/.bashrc.d/*.bash ; do
         . "$config"
