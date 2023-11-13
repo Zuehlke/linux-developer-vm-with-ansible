@@ -9,7 +9,7 @@ def test_pytest_spec_is_installed_at_version_3_2_0_(host):
     assert cmd.rc is 0
     assert "Name: pytest-spec\nVersion: 3.2.0" in cmd.stdout
 
-def test_pytest_html_formatter_is_installed_at_version_3_2_0_(host):
+def test_pytest_html_formatter_is_installed_at_version_4_1_1_(host):
     cmd = host.run("pip3 show --disable-pip-version-check pytest-html")
     assert cmd.rc is 0
-    assert "Name: pytest-html\nVersion: 3.2.0" in cmd.stdout
+    assert "Name: pytest-html\nVersion: 4.1.1" in cmd.stdout
