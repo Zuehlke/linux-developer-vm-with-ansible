@@ -5,7 +5,7 @@ set -e -o pipefail
 
 # variables
 REPO_ROOT=~/vm-setup
-ANSIBLE_VERSION=5.5.0
+ANSIBLE_VERSION=8.6.0
 
 # exports
 export ANSIBLE_FORCE_COLOR=true
