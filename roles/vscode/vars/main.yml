@@ -6,6 +6,6 @@ vscode_sha256sum:
   arm64: bbd05ff212ba27d6dbf8421027cb86d7fd406b36daa725c174b18289449436dc
 
 vscode_extensions:
-- redhat.ansible
-- ms-azuretools.vscode-docker
-- ms-vscode-remote.remote-containers
+  - redhat.ansible
+  - ms-azuretools.vscode-docker
+  - ms-vscode-remote.remote-containers

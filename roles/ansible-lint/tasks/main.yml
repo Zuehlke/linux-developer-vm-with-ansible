@@ -1,8 +1,7 @@
 ---
-
-- name: Install ansible-lint at version 5.3.2
-  pip:
+- name: Install ansible-lint at version 6.22.0
+  ansible.builtin.pip:
     name: ansible-lint
-    version: 5.3.2
+    version: 6.22.0
     state: present
-  become: yes
+  become: true

@@ -1,32 +1,32 @@
 ---
-
 - name: Download VSCode version {{ vscode_version }} .deb package
-  get_url:
+  ansible.builtin.get_url:
     url: https://update.code.visualstudio.com/{{ vscode_version }}/linux-deb-{{ vscode_arch }}/stable
-    checksum: "sha256:{{ vscode_sha256sum[vscode_arch] }}"
-    dest: "{{ download_cache_dir }}/vscode-{{ vscode_version }}.deb"
-    force: no
+    checksum: sha256:{{ vscode_sha256sum[vscode_arch] }}
+    dest: "{{ cache_dir_downloads }}/vscode-{{ vscode_version }}.deb"
+    mode: "0644"
+    force: false
 
 - name: Install VSCode version {{ vscode_version }} from .deb package
-  apt:
-    deb: "{{ download_cache_dir }}/vscode-{{ vscode_version }}.deb"
+  ansible.builtin.apt:
+    deb: "{{ cache_dir_downloads }}/vscode-{{ vscode_version }}.deb"
     state: present
-  become: yes
+  become: true
 
 - name: List VSCode Extensions
-  command:
+  ansible.builtin.command:
     cmd: code --list-extensions
   register: vscode_installed_extensions
   changed_when: false
 
-- name: Install VSCode Extensions
-  command:
+- name: Install VSCode Extensions # noqa no-changed-when
+  ansible.builtin.command:
     cmd: code --install-extension "{{ item }}"
   with_items: "{{ vscode_extensions }}"
   when: not vscode_installed_extensions is search(item)
 
 - name: Remove vscode apt repos to avoid out-of-band updates
-  file:
+  ansible.builtin.file:
     path: /etc/apt/sources.list.d/vscode.list
     state: absent
-  become: yes
+  become: true

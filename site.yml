@@ -1,21 +1,22 @@
 ---
-
-- hosts: localhost
+- name: Update apt cache
+  hosts: localhost
   tasks:
-    - name: update apt cache before running any of the ansible roles
-      apt:
-        update_cache: yes
+    - name: Update apt cache before running any of the ansible roles
+      ansible.builtin.apt:
+        update_cache: true
         cache_valid_time: 3600
-      become: yes
+      become: true
 
-- hosts: localhost
+- name: Install toolchain
+  hosts: localhost
   roles:
-    - { role: readme, tags: "readme" }
-    - { role: ansible-lint, tags: "ansible-lint" }
-    - { role: testinfra, tags: "testinfra" }
-    - { role: bashrc_d, tags: "bashrc_d" }
-    - { role: docker-hacks, tags: "docker-hacks", when: ansible_virtualization_type == "docker" }
-    - { role: cache, tags: "cache" }
-    - { role: git, tags: "git" }
-    - { role: vscode, tags: "vscode" }
-    - { role: docker, tags: "docker" }
+    - { role: readme, tags: readme }
+    - { role: ansible-lint, tags: ansible-lint }
+    - { role: testinfra, tags: testinfra }
+    - { role: bashrc_d, tags: bashrc_d }
+    - { role: docker-hacks, tags: docker-hacks, when: ansible_virtualization_type == "docker" }
+    - { role: cache, tags: cache }
+    - { role: git, tags: git }
+    - { role: vscode, tags: vscode }
+    - { role: docker, tags: docker }

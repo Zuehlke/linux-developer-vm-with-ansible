@@ -1,26 +1,25 @@
 ---
-
 - name: Make sure Git is installed
-  apt:
+  ansible.builtin.apt:
     name: git
     state: present
-  become: yes
+  become: true
 
 - name: Set up the PS1 shell prompt for Git
-  copy:
+  ansible.builtin.copy:
     src: git-ps1.bash
     dest: ~/.bashrc.d/git-ps1.bash
-    mode: 0644
+    mode: "0644"
 
 - name: Supply default configuration entries in ~/.gitconfig
-  git_config:
+  community.general.git_config:
     name: "{{ item.key }}"
     value: "{{ item.value }}"
     scope: global
   with_dict:
     # basic settings
     core.autocrlf: input
-    pull.rebase: 'true'
+    pull.rebase: "true"
     # useful aliases
     alias.co: checkout
     alias.ci: commit
