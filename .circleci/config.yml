@@ -5,10 +5,10 @@ executors:
     machine:
       image: ubuntu-2004:current
     resource_class: medium
-  linux_arm64:
-    machine:
-      image: ubuntu-2004:current
-    resource_class: arm.medium
+  macos_arm64:
+    macos:
+      xcode: 15.0.0
+    resource_class: macos.m1.medium.gen1
 
 jobs:
   build:
@@ -52,4 +52,4 @@ workflows:
       - build:
           matrix:
             parameters:
-              os: [linux_amd64, linux_arm64]
+              os: [linux_amd64, macos_arm64]
