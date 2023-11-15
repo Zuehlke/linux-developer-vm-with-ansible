@@ -1,8 +1,21 @@
-version: 2
-jobs:
-  build:
+version: 2.1
+
+executors:
+  linux_amd64:
     machine:
       image: ubuntu-2004:current
+    resource_class: medium
+  linux_arm64:
+    machine:
+      image: ubuntu-2004:current
+    resource_class: arm.medium
+
+jobs:
+  build:
+    parameters:
+      os:
+        type: executor
+    executor: << parameters.os >>
     environment:
       VAGRANT_DEFAULT_PROVIDER: docker
     steps:
@@ -32,3 +45,11 @@ jobs:
           path: test-results
       - store_artifacts:
           path: test-results
+
+workflows:
+  all-builds:
+    jobs:
+      - build:
+          matrix:
+            parameters:
+              os: [linux_amd64, linux_arm64]
