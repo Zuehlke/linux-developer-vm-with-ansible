@@ -1,23 +1,16 @@
 version: 2.1
 
-executors:
-  linux_amd64:
-    machine:
-      image: ubuntu-2004:current
-    resource_class: medium
-  macos_arm64:
-    macos:
-      xcode: 15.0.0
-    resource_class: macos.m1.medium.gen1
-
 jobs:
   build:
     parameters:
-      os:
-        type: executor
-    executor: << parameters.os >>
+      target_platform:
+        type: string
+    machine:
+      image: ubuntu-2004:current
+    resource_class: large
     environment:
       VAGRANT_DEFAULT_PROVIDER: docker
+      DOCKER_DEFAULT_PLATFORM: << parameters.target_platform >>
     steps:
       - checkout
       - run:
@@ -25,6 +18,9 @@ jobs:
           command: |
             wget https://releases.hashicorp.com/vagrant/2.4.0/vagrant_2.4.0-1_amd64.deb
             sudo dpkg -i vagrant_2.4.0-1_amd64.deb
+      - run:
+          name: Install QEMU
+          command: sudo apt update && sudo apt install qemu-user-static -y
       - run:
           name: Bring up Developer VM
           command: vagrant up --no-provision
@@ -52,4 +48,6 @@ workflows:
       - build:
           matrix:
             parameters:
-              os: [linux_amd64, macos_arm64]
+              target_platform:
+                - linux/amd64
+                - linux/arm64
