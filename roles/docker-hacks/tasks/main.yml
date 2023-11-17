@@ -23,3 +23,14 @@
       export DISPLAY=host.docker.internal:0
     dest: ~/.bashrc.d/x11-display.bash
     mode: "0644"
+
+# note: we can use this to skip problematic parts when running under qemu emulation
+- name: Set fact whether we are running under QEMU emulation or not
+  ansible.builtin.set_fact:
+    running_under_qemu_emulation: "{{ ansible_architecture == 'aarch64' and ansible_processor[1] == 'GenuineIntel' }}"
+- name: Place marker file when running under QEMU emulation
+  ansible.builtin.file:
+    path: /.qemu_emulation
+    state: "{{ 'touch' if running_under_qemu_emulation else 'absent' }}"
+    mode: "0644"
+  become: true

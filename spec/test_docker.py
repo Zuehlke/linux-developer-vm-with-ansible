@@ -29,9 +29,11 @@ def test_docker_engine_package_is_installed_at_version_24_0_7_(host):
     assert host.package('docker-ce').is_installed
     assert '24.0.7' in host.package('docker-ce').version
 
+@pytest.mark.skipif(os.path.exists('/.qemu_emulation'), reason = 'docker engine does not start when emulated via QEMU')
 def test_docker_engine_version_command_reports_24_0_7_(host):
     assert '24.0.7' in host.run('sudo docker version --format "{{.Server.Version}}"').stdout
 
+@pytest.mark.skipif(os.path.exists('/.qemu_emulation'), reason = 'docker engine does not start when emulated via QEMU')
 def test_docker_service_is_enabled_and_running_(host):
     with host.sudo():
         assert host.service("docker").is_enabled

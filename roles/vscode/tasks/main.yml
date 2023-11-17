@@ -18,12 +18,13 @@
     cmd: code --list-extensions
   register: vscode_installed_extensions
   changed_when: false
+  when: not running_under_qemu_emulation|default(false)
 
 - name: Install VSCode Extensions # noqa no-changed-when
   ansible.builtin.command:
     cmd: code --install-extension "{{ item }}"
   with_items: "{{ vscode_extensions }}"
-  when: not vscode_installed_extensions is search(item)
+  when: not vscode_installed_extensions is search(item) and not running_under_qemu_emulation|default(false)
 
 - name: Remove vscode apt repos to avoid out-of-band updates
   ansible.builtin.file:

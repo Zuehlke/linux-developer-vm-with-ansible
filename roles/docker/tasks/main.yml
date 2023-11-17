@@ -52,3 +52,4 @@
     state: started
     enabled: true
   become: true
+  when: not running_under_qemu_emulation|default(false)

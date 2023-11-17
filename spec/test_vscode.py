@@ -1,4 +1,5 @@
 import pytest
+import os
 
 def test_vscode_command_is_found_(host):
     assert host.run('which code').rc is 0
@@ -6,6 +7,7 @@ def test_vscode_command_is_found_(host):
 def test_vscode_version_command_reports_version_1_84_1_(host):
     assert '1.84.1' in host.run('code --version').stdout
 
+@pytest.mark.skipif(os.path.exists('/.qemu_emulation'), reason = 'vscode plugins not installed when emulated via QEMU')
 @pytest.mark.parametrize('extension', [
     'redhat.ansible',
     'ms-azuretools.vscode-docker',
