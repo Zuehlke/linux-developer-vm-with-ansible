@@ -1,8 +1,21 @@
-version: 2
+version: 2.1
+
+executors:
+  amd64:
+    machine:
+      image: ubuntu-2204:2023.10.1
+    resource_class: medium
+  arm64:
+    machine:
+      image: ubuntu-2204:2023.10.1
+    resource_class: arm.medium
+
 jobs:
   build:
-    machine:
-      image: ubuntu-2004:current
+    parameters:
+      executor:
+        type: executor
+    executor: << parameters.executor >>
     environment:
       VAGRANT_DEFAULT_PROVIDER: docker
     steps:
@@ -10,8 +23,12 @@ jobs:
       - run:
           name: Install Vagrant
           command: |
-            wget https://releases.hashicorp.com/vagrant/2.4.0/vagrant_2.4.0-1_amd64.deb
-            sudo dpkg -i vagrant_2.4.0-1_amd64.deb
+            # install vagrant (v2.2.19) from apt repositories because there are no official vagrant .deb releases for arm64
+            # see https://github.com/hashicorp/vagrant-installers/issues/288
+            sudo apt update
+            sudo apt install vagrant -y
+            # use system ruby instead of any of the rvm rubies to make vagrant work on the arm executor where rvm is installed
+            echo 'which rvm && rvm use system' >> ~/.bashrc
       - run:
           name: Bring up Developer VM
           command: vagrant up --no-provision
@@ -32,3 +49,13 @@ jobs:
           path: test-results
       - store_artifacts:
           path: test-results
+
+workflows:
+  all-builds:
+    jobs:
+      - build:
+          matrix:
+            parameters:
+              executor:
+                - amd64
+                - arm64
