@@ -3,7 +3,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "tknerr/ubuntu2204-desktop"
   config.vm.box_version = "23.1027.1"
-  config.vm.box_architecture = :auto
 
   # override the basebox when testing (an approximation) with docker
   config.vm.provider :docker do |docker, override|
