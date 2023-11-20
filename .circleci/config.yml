@@ -23,8 +23,10 @@ jobs:
       - run:
           name: Install Vagrant
           command: |
-            wget https://releases.hashicorp.com/vagrant/2.4.0/vagrant_2.4.0-1_amd64.deb
-            sudo dpkg -i vagrant_2.4.0-1_amd64.deb
+            # install vagrant (v2.2.19) from apt repositories because there are no official vagrant .deb releases for arm64
+            # see https://github.com/hashicorp/vagrant-installers/issues/288
+            sudo apt update
+            sudo apt install vagrant -y
       - run:
           name: Bring up Developer VM
           command: vagrant up --no-provision
