@@ -1,8 +1,21 @@
-version: 2
+version: 2.1
+
+executors:
+  amd64:
+    machine:
+      image: ubuntu-2204:2023.10.1
+    resource_class: medium
+  arm64:
+    machine:
+      image: ubuntu-2204:2023.10.1
+    resource_class: arm.medium
+
 jobs:
   build:
-    machine:
-      image: ubuntu-2004:current
+    parameters:
+      executor:
+        type: executor
+    executor: << parameters.executor >>
     environment:
       VAGRANT_DEFAULT_PROVIDER: docker
     steps:
@@ -32,3 +45,13 @@ jobs:
           path: test-results
       - store_artifacts:
           path: test-results
+
+workflows:
+  all-builds:
+    jobs:
+      - build:
+          matrix:
+            parameters:
+              executor:
+                - amd64
+                - arm64
