@@ -27,6 +27,8 @@ jobs:
             # see https://github.com/hashicorp/vagrant-installers/issues/288
             sudo apt update
             sudo apt install vagrant -y
+            # use system ruby instead of any of the rvm rubies to make vagrant work on the arm executor where rvm is installed
+            echo 'which rvm && rvm use system' >> ~/.bashrc
       - run:
           name: Bring up Developer VM
           command: vagrant up --no-provision
