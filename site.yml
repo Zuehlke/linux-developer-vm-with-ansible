@@ -11,12 +11,4 @@
 - name: Install toolchain
   hosts: localhost
   roles:
-    - { role: readme, tags: readme }
-    - { role: ansible-lint, tags: ansible-lint }
-    - { role: testinfra, tags: testinfra }
-    - { role: bashrc_d, tags: bashrc_d }
-    - { role: docker-hacks, tags: docker-hacks, when: ansible_virtualization_type == "docker" }
-    - { role: cache, tags: cache }
-    - { role: git, tags: git }
-    - { role: vscode, tags: vscode }
-    - { role: docker, tags: docker }
+    - { role: base-toolchain, tags: "base" }

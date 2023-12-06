@@ -1,0 +1,11 @@
+---
+
+- { import_tasks: desktop_readme.yml, name: "install desktop icon support and place a README file on the desktop" }
+- { import_tasks: ansible_lint.yml, name: "install a linter for check our ansible roles for best practices" }
+- { import_tasks: testinfra.yml, name: "install testinfra for testing the ansible-based tool installation" }
+- { import_tasks: bashrc_d.yml, name: "setup of bashrc.d directory provides basic configuration mechanism needed to set env vars etc" }
+- { import_tasks: docker_hacks.yml, name: "workarounds and hacks to allow running the developer VM in a docker container", when: ansible_virtualization_type == "docker" }
+- { import_tasks: cache_dir.yml, name: "creation of cache directory is needed so that we have a place for storing downloaded artifacts" }
+- { import_tasks: git.yml, name: "install git client (including Git LFS support)" }
+- { import_tasks: vscode.yml, name: "install VSCode as a general purpose GUI text editor" }
+- { import_tasks: docker.yml, name: "install docker engine, docker cli and containerd" }

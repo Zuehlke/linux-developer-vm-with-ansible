@@ -1,5 +1,9 @@
 ---
 
+# vars for cache_dir.yml
+cache_dir_downloads: /var/cache/downloads
+
+# vars for docker.yml
 docker_deb_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
 docker_deb_packages:
   - deb_file: containerd.io_1.6.24-1_{{ docker_deb_arch }}.deb
@@ -14,3 +18,14 @@ docker_deb_packages:
     sha256sum:
       amd64: 81273f05dbc410d9ec62b264bbef5452bfa892117e82be5a673e8e9a39192699
       arm64: ef2dc5c54894ed6d10ea7bf529331bcc8ff9ab1fb9f1bbfa75281a5833c8a5d7
+
+# vars for vscode.yml
+vscode_version: 1.84.1
+vscode_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'x64' }}"
+vscode_sha256sum:
+  x64: df2072cf87e7a71b208eb90022b53e05923343ca12efc49fa9ef53f2bc3a784e
+  arm64: bbd05ff212ba27d6dbf8421027cb86d7fd406b36daa725c174b18289449436dc
+vscode_extensions:
+  - redhat.ansible
+  - ms-azuretools.vscode-docker
+  - ms-vscode-remote.remote-containers

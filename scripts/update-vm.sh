@@ -82,11 +82,22 @@ verify_vm() {
   big_step "Verifying the VM..."
   cd $REPO_ROOT
 
+  local role_dir_spec='**'
+  if test -n "$ROLE_TAGS"
+  then
+    if [[ $ROLE_TAGS == *","* ]]
+    then
+      role_dir_spec=$(awk -v var=$ROLE_TAGS 'BEGIN {gsub(",","-toolchain,", var); print "{"var"-toolchain}" }')
+    else
+      role_dir_spec="${ROLE_TAGS}-toolchain"
+    fi
+  fi
+
   step "run ansible linting"
-  ansible-lint --force-color
+  ansible-lint --force-color site.yml
 
   step "run integration tests"
-  py.test --color=yes --junitxml=out/report.xml --html=out/report.html --self-contained-html --spec spec/*.py
+  py.test --color=yes --junitxml=out/report.xml --html=out/report.html --self-contained-html --spec $(eval ls spec/$role_dir_spec/*.py)
 }
 
 big_step() {
